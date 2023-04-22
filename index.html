@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validacion de formulario</title>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <style type="text/css">
+        body{   
+        background: url("");
+        padding-top : 100px; 
+    }
+#container{
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -moz-border-radius: 10px ;
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.5) ;
+    -o-border-radius: 10px ;
+    -o-box-shadow: 0 0 20px rgba(0,0,0,0.5) ;
+    background: #fff;
+    border-radius: 10px ;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5) ;
+    font-family: 'comfortaa' , sans-serif ;
+    font-size: 18px ;
+    margin: 0 auto;
+    padding: 30px ;
+    width: 350px; 
+}
+
+.campo{
+    border: solid 4px #c9c931;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 35px;
+    width: 300px; 
+}
+
+.boton{
+    background: #599416 ;
+    border: solid 0;
+    color: #fff;
+    padding: 10px;
+}
+
+.errores{
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: red;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #fff;
+    display: none;
+    font-size: 14px;
+    margin-top: -80px;
+    margin-left: 340px;
+    padding: 10px;
+    position: absolute;
+}
+    
+</style>
+<script>
+    var expr = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/;
+
+    $(document).ready(function(){        
+        $("#bEnviar").click(function(){
+            var nombre = $("#itNombre").val();
+            var correo= $("#itMail").val();
+            var asunto = $("#itAsunto").val();
+
+            if(nombre == ""){
+                $("#mensaje1").fadeIn();
+                return false;
+            }else{
+                $("#mensaje1").fadeOut();
+                if(correo == "" || !expr.test(correo)){
+                    $("#mensaje2").fadeIn("");
+                    return true;
+                }else{
+                    $("#mensaje2").fadeOut();
+                    if(asunto == ""){
+                        $("#mensaje3").fadeIn("");
+                        return true;
+                    }else{
+                        $("#mensaje3").fadeOut();
+                    }
+                }
+            }
+        });
+        });
+</script>
+
+</head>
+
+<body>
+    <div id="container">
+        <form id="miFormulario">
+                <label>*Nombre:</label><br />
+                <input type="text" id="itNombre" class="campo" required>
+                <div id="mensaje1" class="errores">Ingresa tu nombre</div>
+
+                <label>*Correo electronico:</label><br />
+                <input type="email" id="itEmail" class="campo" required>
+                <div id="mensaje2" class="errores">Ingresa tu mail correcto</div>
+
+                <label >*Asunto:</label><br />
+                <input type="text" id="itAsunto" class="campo" required>
+                <div id="mensaje3" class="errores">Ingresa tu nombre</div>
+
+                
+                <input type="submit" value="Enviardatos" id="benviar"class="boton">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
